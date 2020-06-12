@@ -18,7 +18,9 @@ const texto = "Francis"; // string
 const booleano = false; // boolean
 const nulos = null; // object
 const zapatos = undefined; /// undefined
+
 const apellido = 'Ferri';
+
 console.log(typeof numero);
 console.log(typeof sueldo);
 console.log(typeof texto);
@@ -70,3 +72,42 @@ if (1){
 } else {
     console.log("Es Falso");
 }
+
+if (null){
+    console.log("Es Verdadero"); //!
+} else {
+    console.log("Es Falso");
+}
+
+if (undefined){
+    console.log("Es Verdadero"); //!
+} else {
+    console.log("Es Falso");
+}
+
+// Orden de importancia
+// 1) "const"
+// 2) "let"
+// 3)  Nunca usar "var"
+
+// Objeto Js (JSON) - ARreglos
+const francis = {
+    nombre: "Francis", // llave valor
+    "apellido": 'Ferri', // Se puede pero no es una buena practica
+    edad: 31,
+    hijos: null,
+    zapatos: undefined,
+    casado: false,
+    ropa: {
+        color: 'plomo',
+        talla: "40"
+    }
+    mascotas: ["cachetes", "Pequitas", "Panda"]
+}; // object
+console.log(francis.nombre);
+console.log(francis.apellido);
+
+const arregloNumeros = []; // object
+
+console.log(francis);
+console.log(arregloNumeros);
