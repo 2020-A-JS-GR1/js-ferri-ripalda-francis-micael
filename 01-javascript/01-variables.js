@@ -101,13 +101,108 @@ const francis = {
     ropa: {
         color: 'plomo',
         talla: "40"
-    }
+    },
     mascotas: ["cachetes", "Pequitas", "Panda"]
 }; // object
-console.log(francis.nombre);
-console.log(francis.apellido);
+console.log(francis.nombre); // Francis
+console.log(francis.apellido); // Ferri
+francis["nombre"]; // Francis
+console.log(francis["nombre"]);
+francis.nombre = "Micael";
+
+console.log(francis["nombre"]);
+francis["nombre"] = "Gato";
 
 const arregloNumeros = []; // object
+console.log(francis["nombre"]);
 
+/*
 console.log(francis);
 console.log(arregloNumeros);
+*/
+
+francis.sueldo;
+console.log(francis.sueldo);
+
+francis.sueldo = 1.2;
+console.log(francis.sueldo);
+
+francis["gastos"] = 0.8;
+console.log(francis.gastos);
+
+console.log(Object.keys(francis));
+
+
+francis.sueldo = undefined;
+console.log(francis);
+
+console.log(Object.values(francis));
+
+
+delete francis.sueldo; // Elimina la llave nombre
+console.log(francis);
+
+console.log(Object.keys(francis));
+console.log(Object.values(francis));
+
+
+// Lista de variables por valor
+// number
+// string
+//  boolean
+// undefined
+
+let edadFrancis = 31;
+let edadMicael = edadFrancis;
+console.log(edadFrancis);
+console.log(edadMicael);
+edadFrancis = edadFrancis + 1;
+
+console.log(edadFrancis);
+console.log(edadMicael);
+
+// Lista de variables por referencia
+
+/*
+let rafael = {
+    nombre: "Rafael"
+}
+
+let lenin = rafael;
+console.log(rafael);
+console.log(lenin);
+
+lenin.nombre = "Lenin";
+
+console.log(rafael);
+console.log(lenin);
+
+delete rafael.nombre;
+
+console.log(rafael);
+console.log(lenin);
+
+ */
+
+let rafael = {
+    nombre: "Rafael"
+}
+
+
+//<<<
+// IMPORTANTE
+    let lenin = Object.assign({}, rafael);
+//>>>
+
+
+console.log(rafael);
+console.log(lenin);
+
+lenin.nombre ="Lenin";
+delete rafael.nombre;
+
+console.log(rafael);
+console.log(lenin);
+
+let arregloClonado = Object.assign([], [1,2,3,4,5]);
+console.log(arregloClonado);
