@@ -84,8 +84,12 @@ console.log("respuestaFindIndex", respuestaFindIndex);
 const respuestaMap = arreglo
     .map(
         function (valorActual,indiceActual,arregloCompleto) {
-            valorActual.nota = valorActual.nota + 1;
-            return valorActual;
+            const nuevoElemento = {
+                id: valorActual.id,
+                nombre:valorActual.nombre,
+                nota: valorActual.nota +1
+            };
+            return nuevoElemento;
         }
     );
 
@@ -96,16 +100,30 @@ console.log("arreglo", arreglo);
 // Devolver un nuevo elemento
 const respuestaMapNuevo = arreglo
     .map(
-        function (valorActual,indiceActual,arregloCompleto) {
+        // Funcion anonima no tiene nombre
+        (valorActual,indiceActual,arregloCompleto) =>{
             return valorActual.nota;
         }
     );
 console.log("RespuestaMap",respuestaMapNuevo);
 console.log("arreglo", arreglo);
 
+// FILTER
+// Devolver una expresion TRUTY FALSY
 
+const respuestaFilter = arreglo
+    .filter(
+        (valorActual) => {
+            return valorActual.nota >= 14;
+        }
+    )
+
+console.log("respuestaFilter",respuestaFilter);
+console.log("arreglo", arreglo);
 
 /*
+
+
 
 const respuestaForEach = arreglo
     .forEach(
@@ -120,3 +138,4 @@ const respuestaForEach = arreglo
 console.log("respuestaForEach", respuestaForEach); // undefined
 
  */
+
