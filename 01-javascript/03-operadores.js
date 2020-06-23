@@ -1,57 +1,75 @@
 const arreglo = [
     {
         id:1,
-        nombre: 'Francis',
+        nombre: 'Adrian',
         nota: 5
     },
     {
         id:2,
-        nombre: 'Paco',
-        nota: 7
+        nombre: 'Vicente',
+        nota: 8
     },
     {
         id:3,
-        nombre: 'Alberto',
-        nota: 10
-    },
-    {
-        id:4,
-        nombre: 'Benjamin',
-        nota: 3
-    },
-    {
-        id:5,
-        nombre: 'Erick',
-        nota: 8
-    },
-    {
-        id:6,
-        nombre: 'Goku',
+        nombre: 'Carolina',
         nota: 14
     },
     {
+        id:4,
+        nombre: 'Wendy',
+        nota: 16
+    },
+    {
+        id:5,
+        nombre: 'Andrea',
+        nota: 19
+    },
+    {
+        id:6,
+        nombre: 'Pamela',
+        nota: 19
+    },
+    {
         id:7,
-        nombre: 'Madona',
-        nota: 12
+        nombre: 'Cristian',
+        nota: 20
     },
     {
         id:8,
-        nombre: 'Bethoven',
-        nota: 15
+        nombre: 'Daniel',
+        nota: 19
     },
     {
         id:9,
-        nombre: 'Pepe',
-        nota: 7
+        nombre: 'Lilly',
+        nota: 14
     },
     {
         id:10,
-        nombre: 'Ernesto',
-        nota: 8
+        nombre: 'Ramiro',
+        nota: 12
     }
 ];
 
 // FUNCIONES COMO PARAMETROS
+
+/*
+
+
+
+const respuestaForEach = arreglo
+    .forEach(
+        function (valorActual, indiceActual, arregloCompleto) {
+            console.log("valorActual",valorActual);
+            console.log("indiceActual",indiceActual);
+            console.log("arregloActual",arregloCompleto);
+            return valorActual.nombre === "Alberto";
+        }
+    );
+
+console.log("respuestaForEach", respuestaForEach); // undefined
+
+ */
 
 // FIND
 
@@ -121,21 +139,43 @@ const respuestaFilter = arreglo
 console.log("respuestaFilter",respuestaFilter);
 console.log("arreglo", arreglo);
 
-/*
+
+// Hay alguna nta menor a 9
+// OR
+const respuestaSome = arreglo.some(
+    (valorActual,indiceActual,arregloCompleto) => {
+        return valorActual.nota < 4
+    }
+);
+console.log("respuestaSome", respuestaSome);
 
 
+// AND
+//Todas las notas son mayores a 14
 
-const respuestaForEach = arreglo
-    .forEach(
-        function (valorActual, indiceActual, arregloCompleto) {
-            console.log("valorActual",valorActual);
-            console.log("indiceActual",indiceActual);
-            console.log("arregloActual",arregloCompleto);
-            return valorActual.nombre === "Alberto";
-        }
-    );
+const respuestaEvery = arreglo.every(
+    (valorActual,indiceActual,arregloCompleto) =>{
+    return valorActual.nota > 14
+});
 
-console.log("respuestaForEach", respuestaForEach); // undefined
+console.log("respuestaSome", respuestaEvery);
 
- */
+// Reduce de izquierda a derecha
+// Reduce right de derecha a izquierda
 
+const respuestaReduce = arreglo.reduce(
+    (valorAcumulado, valorActual, indice, arreglo) => {
+        return valorAcumulado - valorActual.nota;
+    },
+    500 // Acumulador
+);
+
+console.log("Respuestareduce", respuestaReduce);
+
+const arregloEstudiantesMenoresANueve = arreglo
+    .map((v) => v.nota *1.3)
+    .filter((nota)=> nota > 9);
+const totalPuntosEstudiantes = arregloEstudiantesMenoresANueve
+    .reduce((acumulado, actual) => acumulado + actual, 0);
+const notaPromedio = totalPuntosEstudiantes / arregloEstudiantesMenoresANueve.length;
+console.log("notaPromedio", notaPromedio);
