@@ -21,12 +21,12 @@ const arregloDos = [6,7,8,9,10];
 const superArreglo = {
     ...arregloUno,
     ...arregloDos
-}
+};
 
 const superArreglo1 = [
     ...arregloUno,
     ...arregloDos
-]
+];
 
 superArreglo[0] = 100;
 console.log("superArreglo", superArreglo);
