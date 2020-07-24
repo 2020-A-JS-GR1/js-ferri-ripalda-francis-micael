@@ -10,7 +10,6 @@ class Archivo{
     }
     
     obtenerDatos(){
-        
         // TODO Devolver los datos
     }
     

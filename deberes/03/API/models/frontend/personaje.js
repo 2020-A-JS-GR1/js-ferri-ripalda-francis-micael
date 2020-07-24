@@ -1,24 +1,23 @@
 class Personaje{
-    constructor(nombre, descripcionFisica, descripcionPsicologica, rol, habilidades){
+    constructor(nombre, edad,  descripcionFisica, descripcionPsicologica, rol){
         this.nombre = nombre;
+        this.edad = edad;
         this.descripcionFisica = descripcionFisica;
         this.descripcionPsicologica = descripcionPsicologica;
         this.rol = rol;
-        this.habilidades = habilidades;
     }
 
     imprimirPersonaje(){
         console.log(
             `
             Nombre: ${this.nombre}
+            Edad: ${this.edad}
             Descripción Fisica: ${this.descripcionFisica}
             Descripcion Psicologica: ${this.descripcionPsicologica}
             Rol: ${this.rol}
-            Director: ${this.director}
-            Habilidades: ${this.habilidades}
             `
         )
     }
 }
 
-module.exports = Personaje;
+modules.exports = Personaje;
