@@ -1,13 +1,20 @@
 const Cartoon = require("../models/cartoonSchema");
 const Fs = require("fs");
 
+const path = "./data/cartoons.json";
+
+
 // Guardar un nuevo cartoon
 exports.nuevoCartoon = async (req, res, next) => {
     try {
-        // TODO: Validar Campos
         const cartoon = new Cartoon(req.body);
-        await cartoon.save();
-        res.json({mensaje: "El cartoon fue agregado correctamente"});
+        if (validarCartoon(cartoon)){
+            await cartoon.save();
+            guardarCartoons();
+            res.json({mensaje: "El cartoon fue agregado correctamente"});
+        } else {
+            res.json({mensaje: "Datos incorrectos"});
+        }
     } catch(error) {
         res.json({mensaje: "El cartoon no pudo ser agregado"});
         console.log(error);
@@ -27,7 +34,7 @@ exports.obtenerCartoons = async (req, res, next) => {
     }
 }
 
-// Obtener cartton por su id
+// Obtener cartoon por su id
 exports.obtenerCartoon = async (req, res, next) => {
     try{
         const cartoon = await Cartoon.findById(req.params.id);
@@ -42,13 +49,17 @@ exports.obtenerCartoon = async (req, res, next) => {
 // Actualizar un Caroon
 exports.actualizarCartoon = async (req, res, next) => {
     try {
-        // TODO: Validar Campos
-        const cartoon = await Cartoon.findOneAndUpdate(
-            {_id: req.params.id}, 
-            req.body, 
-            {new: true}
-        );
-        res.json(cartoon);
+        if (validarCartoon(req.body)){
+            const cartoon = await Cartoon.findOneAndUpdate(
+                {_id: req.params.id}, 
+                req.body, 
+                {new: true}
+            );
+            guardarCartoons();
+            res.json(cartoon);
+        } else {
+            res.json({mensaje: "Datos incorrectos"});
+        }
     } catch (error) {
         console.log(error);
         res.json({mensaje: "No se pudo actualizar el cartoon"});
@@ -60,6 +71,7 @@ exports.actualizarCartoon = async (req, res, next) => {
 exports.eliminarCartoon = async (req, res, next) => {
     try{
         await Cartoon.findOneAndDelete({_id: req.params.id});
+        guardarCartoons();
         res.json({mensaje: "Se elimino el Cartoon"});
     } catch (error){
         res.json({mensaje: "No se pudo eliminart el cartoon"});
@@ -70,16 +82,36 @@ exports.eliminarCartoon = async (req, res, next) => {
 
 // Guardar en archivo de Texto
 guardarCartoons = () => {
-    let cartoons = new Promise((resolve, reject) => {
-
-    })
-    
     Cartoon.find({})
-    Fs.writeFile()
-    try{
-        const cartoons = await ;
-        // TODO: Guardar en archivo
-    } catch (error){
-        console.log(error);
+        .then(cartoons => {
+            Fs.writeFile(path, JSON.stringify(cartoons), "utf-8", 
+                (error) => {
+                    if (error) {
+                        console.log("No se pudo guardar");
+                    }
+                }
+            )
+        })
+}
+
+// Validar datos de un nuevo cartoon
+function validarCartoon(cartoon){
+    if (!(cartoon.titulo && cartoon.productora && cartoon.anioEstreno && cartoon.clasificacion && cartoon.director && cartoon.personajes)){
+        return false;
+    } else {
+        if (typeof cartoon.anioEstreno !== "number"){
+            return false;
+        } else {
+            cartoon.personajes.forEach(personaje => {
+                if (!(personaje.nombre, personaje.edad, personaje.descripcionFisica, personaje.descripcionPsicologica, personaje.rol)){
+                    return false;
+                } else {
+                    if (typeof personaje.edad !== "number"){
+                        return false;
+                    }
+                }
+            });
+        }
     }
+    return true;
 }

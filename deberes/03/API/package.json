@@ -4,11 +4,12 @@
   "description": "Deber numero tres de JavaScript",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon ./index.js"
+    "dev": "nodemon ./index.js"
   },
   "author": "Francis Ferri",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.9.24"
   },
