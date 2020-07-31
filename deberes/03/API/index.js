@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // Conectar a mongoDB
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/cartoon-personajes",{
+mongoose.connect("mongodb://localhost:5050/cartoon-personajes",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
