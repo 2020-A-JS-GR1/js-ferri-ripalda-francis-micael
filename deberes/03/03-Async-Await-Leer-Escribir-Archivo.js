@@ -40,4 +40,4 @@ async function ejercicio(path, contenidoNuevo) {
     }
 }
 
-respuestaEjercicio = ejercicio("./02-ejemplo.txt", "CONTENIDO NUEVO 2");
+respuestaEjercicio = ejercicio("./03-ejemplo.txt", "CONTENIDO NUEVO 2");
