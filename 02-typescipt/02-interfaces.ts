@@ -1,4 +1,4 @@
-// 02-interfaces.ts
+// 03-interfaces.ts
 
 interface Usuario  {
     nombre: string;
