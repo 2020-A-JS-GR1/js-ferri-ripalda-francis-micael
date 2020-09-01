@@ -1,0 +1,15 @@
+<!-- Propertibinding -->
+<img [src]="urlEjemploImagen" alt="">
+
+<!-- Intrerpolacion -> Mostrar texto en la interfaz -->
+<p>{{ textoEjemplo }}</p>
+<a [href]="linkTextoEjemplo">{{textoEjemplo}}</a>
+<button>{{textoEjemplo}}</button>
+
+<!-- Event Binding -->
+<button 
+(click)="ejemploFuncion()"
+(blur)="eventoOnBlur()"
+>
+    {{textoEjemplo}}
+</button>
