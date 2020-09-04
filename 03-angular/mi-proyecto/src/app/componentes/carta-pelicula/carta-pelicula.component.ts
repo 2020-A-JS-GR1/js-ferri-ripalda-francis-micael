@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-carta-pelicula',
@@ -11,10 +11,13 @@ export class CartaPeliculaComponent implements OnInit {
   @Input() descripcion: string;
   @Input() nombreBoton: string;
 
-  textoEjemplo: string = "Francis";
-  urlEjemploImagen: string = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/bXcRw7FL8QzUZOvY2fZdwDv5ymQ.jpg";
+  @Output() eventoDioClicEnBoton: EventEmitter<boolean> = new EventEmitter<boolean>()
 
-  linkTextoEjemplo: string = "wwww.google.com.ec";
+  @Output() eventoDioClicEnImagen: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+  textoEjemplo: string = "Francis";
+
+  linkTextoEjemplo: string = "https://www.google.com/webhp?hl=es&sa=X&ved=0ahUKEwjds_DEwdDrAhVsu1kKHfwJBzgQPAgIwww.google.com.ec";
 
   constructor() { }
 
@@ -25,5 +28,11 @@ export class CartaPeliculaComponent implements OnInit {
   }
   eventoOnBlur(){
     console.log("Blur");
+  }
+  ejecutarEventoDioClic(){
+    this.eventoDioClicEnBoton.emit(true);
+  }
+  ejecutarEventoDioClicImagen(){
+    this.eventoDioClicEnImagen.emit(true);
   }
 }
