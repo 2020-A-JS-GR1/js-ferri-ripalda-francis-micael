@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './servicios/http/usuario.service';
 
 @Component({
@@ -6,8 +6,10 @@ import { UsuarioService } from './servicios/http/usuario.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'mi-proyecto';
+
+  habilitado = true;
 
   arregloNumeros= [1,2,3,4,5,6];
 
@@ -32,10 +34,18 @@ export class AppComponent {
     }
   ]
   
+  arregloUsuarios = [];
+
+  arregloObservables = [];
+
   // Inyectar Dependencias
   constructor(
     private readonly _usuarioService: UsuarioService
   ) {
+  }
+  
+  ngOnInit(){
+    this.mensajeConsola(true);
   }
   
   mensajeConsola(objeto: boolean) {
@@ -44,12 +54,35 @@ export class AppComponent {
     observableTraerTodos
       .subscribe(
         (data)=>{ // THEN TRY
+          this.arregloUsuarios = data as any[];
           console.log(data);
         },
         (error)=>{ // CATCH
           console.log(error);
         }
       );
+  }
+
+  crearUsuario(){
+    const ususarioNuevo = {
+      cedula: "1342716789",
+      nombre: "naruto",
+      apellido: "Uzumaki"
+    };
+    const obsCrearUsuario = this._usuarioService.crear(ususarioNuevo);
+    this.arregloObservables.push(obsCrearUsuario);
+    const subscripcion = obsCrearUsuario
+      .subscribe(
+        (datos) => {
+          console.log("Nuevo usuario" + datos);
+          this.mensajeConsola(true);
+        },
+        (error) => {
+          console.log("Error " + error);
+          
+        }
+      )
+      this.arregloObservables.push(subscripcion);
   }
   
 }
