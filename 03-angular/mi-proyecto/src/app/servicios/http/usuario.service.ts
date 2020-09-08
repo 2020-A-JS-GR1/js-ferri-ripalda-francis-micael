@@ -12,4 +12,12 @@ export class UsuarioService{
     traerTodos(){
         return this._httpCLient.get(this.url + "/Usuario");
     }
+
+    // POST /usuario
+    crear(usuario){
+        return this._httpCLient.post(
+            this.url + "/usuario",
+             usuario
+        )
+    }
 }
