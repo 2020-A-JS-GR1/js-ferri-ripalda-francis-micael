@@ -9,6 +9,10 @@ export class UsuarioService{
         private readonly _httpCLient: HttpClient // Servicio
     ){}
 
+    obtenerUnoPorId(idUsuario: number){
+        return this._httpCLient.get(this.url + "/Usuario/" + idUsuario);
+    }
+
     traerTodos(){
         return this._httpCLient.get(this.url + "/Usuario");
     }
@@ -19,5 +23,9 @@ export class UsuarioService{
             this.url + "/usuario",
              usuario
         )
+    }
+
+    eliminar(idUsuario: number){
+        return this._httpCLient.delete(this.url+"/Usuario/" + idUsuario)
     }
 }
