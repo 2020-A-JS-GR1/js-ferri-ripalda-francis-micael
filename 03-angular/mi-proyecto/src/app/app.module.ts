@@ -13,6 +13,8 @@ import { RutaUsuarioComponent } from './rutas/ruta-usuario/ruta-usuario.componen
 import { RutaCrearUsuarioComponent } from './rutas/ruta-crear-usuario/ruta-crear-usuario.component';
 import { RutaEditarUsuarioComponent } from './rutas/ruta-editar-usuario/ruta-editar-usuario.component';
 import { RutaListaUsuarioComponent } from './rutas/ruta-lista-usuario/ruta-lista-usuario.component';
+import { FormularioUsuarioComponent } from './componentes/formularios/formulario-usuario/formulario-usuario.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,12 +27,14 @@ import { RutaListaUsuarioComponent } from './rutas/ruta-lista-usuario/ruta-lista
     RutaUsuarioComponent,
     RutaCrearUsuarioComponent,
     RutaEditarUsuarioComponent,
-    RutaListaUsuarioComponent
+    RutaListaUsuarioComponent,
+    FormularioUsuarioComponent
   ],
   imports: [
     BrowserModule, // Este es el que importa el ngFor y
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, 
+    FormsModule // PErmite la fucnionalidad de los formularios de templates
   ],
   providers: [
     UsuarioService
