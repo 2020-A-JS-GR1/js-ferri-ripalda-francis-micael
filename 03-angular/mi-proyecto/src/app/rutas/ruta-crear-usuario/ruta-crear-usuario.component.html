@@ -1,2 +1,4 @@
 <p>ruta-crear-usuario works!</p>
-<app-formulario-usuario></app-formulario-usuario>
+<app-formulario-usuario
+    (informacionValidada)="crearUsuario($event)"
+></app-formulario-usuario>
