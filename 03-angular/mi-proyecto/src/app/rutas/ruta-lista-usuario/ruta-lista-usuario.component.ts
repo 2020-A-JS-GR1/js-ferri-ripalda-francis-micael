@@ -10,6 +10,7 @@ import { UsuarioService } from 'src/app/servicios/http/usuario.service';
 export class RutaListaUsuarioComponent implements OnInit {
 
   arregloUsuarios = [];
+  busquedaModelo = "";
   constructor( 
     private readonly _usuarioService: UsuarioService,
     private readonly _router: Router
@@ -38,7 +39,23 @@ export class RutaListaUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const obserbableTraerTodos = this._usuarioService.traerTodos();
+    this.filtrarArreglo();
+  }
+
+  filtrarArreglo(){
+    const consulta = {
+      or: [
+        {
+          nombre: {contains: this.busquedaModelo}
+        },
+        {
+          cedula: {contains: this.busquedaModelo}
+        }
+      ]
+    }
+    const consultaString = "where=" + JSON.stringify(consulta);
+
+    const obserbableTraerTodos = this._usuarioService.traerTodos(this.busquedaModelo != "" ? consultaString: "" );
     obserbableTraerTodos
       .subscribe(
         (usuarios: any) => {

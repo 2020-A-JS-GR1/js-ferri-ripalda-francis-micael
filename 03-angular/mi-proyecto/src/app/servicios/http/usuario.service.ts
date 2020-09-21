@@ -13,8 +13,8 @@ export class UsuarioService{
         return this._httpCLient.get(this.url + "/Usuario/" + idUsuario);
     }
 
-    traerTodos(){
-        return this._httpCLient.get(this.url + "/Usuario");
+    traerTodos(consulta?: string){
+        return this._httpCLient.get(this.url + "/Usuario?" + consulta);
     }
 
     // POST /usuario
@@ -23,6 +23,10 @@ export class UsuarioService{
             this.url + "/usuario",
              usuario
         )
+    }
+
+    editar(usuario, id){
+        return this._httpCLient.put(this.url + "/Usuario/"+ id, usuario)
     }
 
     eliminar(idUsuario: number){
