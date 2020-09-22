@@ -10,7 +10,7 @@ export class RutaLoginComponent implements OnInit {
 
   correoModelo: string;
   cedulaModelo: string;
-  constructor(private readonly _authService: AuthService) { }
+  constructor(readonly _authService: AuthService) { }
 
   ngOnInit(): void {
   }
