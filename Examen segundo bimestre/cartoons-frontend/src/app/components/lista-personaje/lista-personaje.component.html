@@ -1,0 +1,28 @@
+<label for="busquedaId">Busqueda </label>
+<input id="busquedaId" name="busqueda" type="text" [(ngModel)]="busquedaModelo">
+<button (click)="filtrarArreglo()">Buscar</button>
+<h3>Lista personajes</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cartoon</th>
+        <th>Edad</th>
+        <th>Rol</th>
+    </tr>
+    <tr *ngFor="let personaje of arregloPersonajes">
+        <td>{{personaje.id}}</td>
+        <td>{{personaje.nombre}}</td>
+        <td>{{personaje.cartoon.titulo}}</td>
+        <td>{{personaje.edad}}</td>
+        <td>{{personaje.rol}}</td>
+        <td>
+            <button (click)="irAEditarPersonaje(personaje.id)">
+              Editar
+            </button>
+            <button (click)="eliminarPersonaje(personaje.id)">
+              Eliminar
+            </button>
+          </td>
+    </tr>
+</table>

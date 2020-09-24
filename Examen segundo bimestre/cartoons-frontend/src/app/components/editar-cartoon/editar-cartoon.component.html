@@ -1,0 +1,10 @@
+<div *ngIf="mostrarFormulario">
+    <app-formulario-cartoon
+        [tituloInput]="cartoon.titulo"
+        [productoraInput]="cartoon.productora"
+        [anioEstrenoInput]="cartoon.anioEstreno"
+        [clasificacionInput]="cartoon.clasificacion"
+        [directorInput]="cartoon.director"
+        (informacionValidada)="editarCartoon($event)"
+    ></app-formulario-cartoon>
+</div>

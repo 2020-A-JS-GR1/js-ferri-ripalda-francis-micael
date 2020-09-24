@@ -1,0 +1,70 @@
+<h3>Formulario cartoon</h3>
+<form #formularioCartoon="ngForm"
+(ngSubmit)="crearCartoon(formularioCartoon)">
+    <div>
+        <label for="tituloId">Titulo </label>
+        <input  id="tituloId" 
+                type="text"
+                name="titulo"
+                [(ngModel)]="tituloModelo"
+                required
+                minlength="3"
+                maxlength="45"
+                #nombreCampo="ngModel">
+    </div>
+    <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+        <p *ngIf="nombreCampo.errors.required">
+            Error: Campo requerido
+        </p>
+        <p *ngIf="nombreCampo.errors.minlength">
+            Error: Longitud minima 3
+        </p>
+        <p *ngIf="nombreCampo.errors.maxlength">
+            Error: Longitud maxima 45
+        </p>
+    </div>
+
+    <div>
+        <label for="productoraId">Productora </label>
+        <input id="productoraId" 
+                type="text" 
+                name="productora" 
+                [(ngModel)]="productoraModelo"
+                required>
+    </div>
+    <div>
+        <label for="anioEstrenoId">Año de estreno </label>
+        <input id="anioEstrenoId" 
+                type="number" 
+                name="anioEstreno" 
+                [(ngModel)]="anioEstrenoModelo"
+                required>
+    </div>
+
+    <div>
+        <label for="clasificacionId">Clasificacion</label>
+        <select name="clasificacion" 
+                id="clasificacionId" 
+                [(ngModel)]="clasificacionModelo"
+                required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="directorId">Director </label>
+        <input id="directorId" 
+                type="text" 
+                name="director" 
+                [(ngModel)]="directorModelo"
+                required>
+    </div>
+    <button type="submit" [disabled]="!formularioCartoon.form.valid">
+        Submit
+    </button>
+    <button type="reset">
+        Reset
+    </button>
+</form>

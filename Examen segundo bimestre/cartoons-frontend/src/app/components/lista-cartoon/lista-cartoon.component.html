@@ -1,0 +1,26 @@
+<label for="busquedaId">Busqueda </label>
+<input id="busquedaId" name="busqueda" type="text" [(ngModel)]="busquedaModelo">
+<button (click)="filtrarArreglo()">Buscar</button>
+<h3>Lista cartoons</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Productora</th>
+        <th>Clasificación</th>
+    </tr>
+    <tr *ngFor="let cartoon of arregloCartoons">
+        <td>{{cartoon.id}}</td>
+        <td>{{cartoon.titulo}}</td>
+        <td>{{cartoon.productora}}</td>
+        <td>{{cartoon.clasificacion}}</td>
+        <td>
+            <button (click)="irAEditarCartoon(cartoon.id)">
+              Editar
+            </button>
+            <button (click)="eliminarCartoon(cartoon.id)">
+              Eliminar
+            </button>
+          </td>
+    </tr>
+</table>
