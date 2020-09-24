@@ -1,0 +1,76 @@
+<h3>Formulario personaje</h3>
+<form #formularioPersonaje="ngForm"
+(ngSubmit)="crearPersonaje(formularioPersonaje)">
+    <div>
+        <label for="nombreId">Nombre </label>
+        <input  id="nombreId" 
+                type="text"
+                name="nombre"
+                [(ngModel)]="nombreModelo"
+                required
+                minlength="3"
+                maxlength="45"
+                #nombreCampo="ngModel">
+
+        <div *ngIf="nombreCampo.touched && nombreCampo.errors">
+                <p *ngIf="nombreCampo.errors.required">
+                    Error: Campo requerido
+                </p>
+                <p *ngIf="nombreCampo.errors.minlength">
+                    Error: Longitud minima 3
+                </p>
+                <p *ngIf="nombreCampo.errors.maxlength">
+                    Error: Longitud maxima 45
+                </p>
+        </div>
+    </div>
+    <div>
+        <label for="edadId">Edad </label>
+        <input id="edadId" 
+                type="number" 
+                name="edad" 
+                [(ngModel)]="edadModelo"
+                required>
+    </div>
+    <div>
+        <label for="descripcionFisicaId">Descripcion fisica </label>
+        <input id="descripcionFisicaId" 
+                type="text" 
+                name="descripcionFisica" 
+                [(ngModel)]="descripcionFisicaModelo"
+                required>
+    </div>
+    <div>
+        <label for="descripcionPsicologicaId">Descripcion psicologica </label>
+        <input id="descripcionPsicologicaId" 
+                type="text" 
+                name="descripcionPsicologica" 
+                [(ngModel)]="descripcionPsicologicaModelo">
+    </div>
+    <div>
+        <label for="rolId">Rol </label>
+        <input id="rolId" 
+                type="text" 
+                name="rol" 
+                [(ngModel)]="rolModelo"
+                required>
+    </div>
+
+    <div>
+        <label for="cartoonId">Cartoon </label>
+        <select name="cartoon" 
+                id="cartoonId" 
+                [(ngModel)]="cartoonModelo"
+                required>
+            <option *ngFor="let cartoon of arregloCartoons" [ngValue]="cartoon.id">{{cartoon.titulo}}</option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="!formularioPersonaje.form.valid">
+        Submit
+    </button>
+    <button type="reset">
+        Reset
+    </button>
+</form>
+
+
