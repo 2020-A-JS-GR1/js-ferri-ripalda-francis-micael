@@ -8,12 +8,13 @@ import { CartoonService } from 'src/app/services/cartoon.service';
 })
 export class FormularioPersonajeComponent implements OnInit {
 
+
   @Input() nombreInput: string;
   @Input() edadInput: number;
   @Input() descripcionFisicaInput: string;
   @Input() descripcionPsicologicaInput: string;
   @Input() rolInput: string;
-  @Input() cartoonInput: number;
+  @Input() cartoonInput;
 
   @Output() informacionValidada: EventEmitter<any> = new EventEmitter<any>();
 
@@ -31,7 +32,14 @@ export class FormularioPersonajeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerCartoons();
+    if (!this.cartoonInput){
+      console.log("LLEGUE");
+      
+      this.obtenerCartoons();
+    } else {
+      this.arregloCartoons.push(this.cartoonInput);
+      this.cargarDatos();
+    }
   }
 
   obtenerCartoons(){

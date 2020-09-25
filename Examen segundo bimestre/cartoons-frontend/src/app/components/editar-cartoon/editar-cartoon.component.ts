@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PersonajeService } from 'src/app/services/personaje.service';
 import { CartoonService } from '../../services/cartoon.service';
 
 @Component({
@@ -10,13 +11,21 @@ import { CartoonService } from '../../services/cartoon.service';
 export class EditarCartoonComponent implements OnInit {
 
   cartoon;
-  mostrarFormulario= false;
+
+  cartoonCreado: boolean;
+  mostrarFormulario:boolean;
+  recargarLista: boolean;
 
   constructor(
     private readonly _cartoonService: CartoonService,
     private readonly _activatedRoute: ActivatedRoute,
+    private readonly _personajeService: PersonajeService,
     private readonly _router: Router
-  ) { }
+  ) { 
+    this.cartoonCreado = false;
+    this.mostrarFormulario = false;
+    this.recargarLista = false;
+  }
 
   ngOnInit(): void {
     const obsRuta = this._activatedRoute.params;
@@ -39,17 +48,31 @@ export class EditarCartoonComponent implements OnInit {
 
   llenarFormularioConDatosDeCartoon(){
     this.mostrarFormulario = true;
+    this.cartoonCreado = true;
   }
 
   editarCartoon(cartoon){
     const obsEditarPersonaje = this._cartoonService.editar(cartoon, this.cartoon.id);
     obsEditarPersonaje.subscribe(
       (datos) => {
-        const url = ["/cartoon", "lista"];
-        this._router.navigate(url);
       },
       (error) => {
         console.log("Error: ", error);
+      }
+    )
+  }
+
+  crearPersonaje(personaje){    
+    this.recargarLista = true;
+    const obsCrear = this._personajeService.crear(personaje);
+    obsCrear.subscribe(
+      (datos) => {
+        // Aqui enviar a recargar
+        setTimeout(() => {this.recargarLista = false}, 1000);
+      },
+      (error) => {
+        console.log("Error: ", error);
+        setTimeout(() => {this.recargarLista = false}, 1000);
       }
     )
   }

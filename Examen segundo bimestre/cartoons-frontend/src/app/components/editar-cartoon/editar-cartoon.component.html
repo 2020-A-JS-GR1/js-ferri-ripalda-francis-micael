@@ -8,3 +8,14 @@
         (informacionValidada)="editarCartoon($event)"
     ></app-formulario-cartoon>
 </div>
+<div class="row mt-5" *ngIf="cartoonCreado">
+    <div class="col-sm-4">
+        <app-formulario-personaje
+            [cartoonInput]="cartoon"
+            (informacionValidada)="crearPersonaje($event)"
+        ></app-formulario-personaje>
+    </div>
+    <div class="col-sm-4">
+        <app-lista-personaje *ngIf="!recargarLista"></app-lista-personaje>
+    </div>
+</div>

@@ -1,11 +1,12 @@
 <div *ngIf="mostrarFormulario">
     <app-formulario-personaje
+        
         [nombreInput]="personaje.nombre"
         [edadInput]="personaje.edad"
         [descripcionFisicaInput]="personaje.descripcionFisica"
         [descripcionPsicologicaInput]="personaje.descripcionPsicologica"
         [rolInput]="personaje.rol"
-        [cartoonInput]="personaje.cartoon.id"
+        [cartoonInput]="personaje.cartoon"
         (informacionValidada)="editarPersonaje($event)"
     ></app-formulario-personaje>
 </div>
