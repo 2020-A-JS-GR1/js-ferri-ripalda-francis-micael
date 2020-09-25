@@ -33,7 +33,7 @@ export class FormularioCartoonComponent implements OnInit {
     }
   }
 
-  crearCartoon(){
+  crearCartoon(formularioCartoon){
     // Validar
     const cartoon = {
       titulo: this.tituloModelo,
