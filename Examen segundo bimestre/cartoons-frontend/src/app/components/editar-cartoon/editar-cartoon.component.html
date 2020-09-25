@@ -16,6 +16,6 @@
         ></app-formulario-personaje>
     </div>
     <div class="col-sm-4">
-        <app-lista-personaje></app-lista-personaje>
+        <app-lista-personaje *ngIf="!recargarLista"></app-lista-personaje>
     </div>
 </div>

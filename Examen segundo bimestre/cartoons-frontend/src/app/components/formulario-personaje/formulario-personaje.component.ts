@@ -14,7 +14,7 @@ export class FormularioPersonajeComponent implements OnInit {
   @Input() descripcionFisicaInput: string;
   @Input() descripcionPsicologicaInput: string;
   @Input() rolInput: string;
-  @Input() cartoonInput: number;
+  @Input() cartoonInput;
 
   @Output() informacionValidada: EventEmitter<any> = new EventEmitter<any>();
 
@@ -33,6 +33,8 @@ export class FormularioPersonajeComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.cartoonInput){
+      console.log("LLEGUE");
+      
       this.obtenerCartoons();
     } else {
       this.arregloCartoons.push(this.cartoonInput);

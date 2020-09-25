@@ -13,6 +13,7 @@ export class CrearCartoonComponent implements OnInit {
   cartoon;
 
   cartoonCreado: boolean;
+  recargarLista: boolean;
 
   constructor(
     private readonly _cartoonService: CartoonService,
@@ -20,6 +21,7 @@ export class CrearCartoonComponent implements OnInit {
     private readonly router: Router
   ) { 
     this.cartoonCreado = false;
+    this.recargarLista = false;
   }
 
   ngOnInit(): void {
@@ -39,13 +41,16 @@ export class CrearCartoonComponent implements OnInit {
   }
 
   crearPersonaje(personaje){    
+    this.recargarLista = true;
     const obsCrear = this._personajeService.crear(personaje);
     obsCrear.subscribe(
       (datos) => {
         // Aqui enviar a recargar
+        setTimeout(() => {this.recargarLista = false}, 1000);
       },
       (error) => {
         console.log("Error: ", error);
+        setTimeout(() => {this.recargarLista = false}, 1000);
       }
     )
   }

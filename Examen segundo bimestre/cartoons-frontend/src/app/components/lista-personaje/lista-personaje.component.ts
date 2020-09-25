@@ -27,14 +27,7 @@ export class ListaPersonajeComponent implements OnInit {
 
   filtrarArreglo(){
     const consulta = {
-      or: [
-        {
-          nombre: {contains: this.busquedaModelo}
-        },
-        {
-          descripcionFisica: {contains: this.busquedaModelo}
-        }
-      ]
+      nombre: {contains: this.busquedaModelo}
     }
     const consultaString = "where=" + JSON.stringify(consulta);
     const obsTraerTodos = this._personajeService.traerTodos(this.busquedaModelo != "" ? consultaString : "");

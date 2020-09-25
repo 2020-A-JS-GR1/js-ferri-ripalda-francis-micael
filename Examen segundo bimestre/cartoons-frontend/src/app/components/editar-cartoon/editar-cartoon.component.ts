@@ -11,15 +11,21 @@ import { CartoonService } from '../../services/cartoon.service';
 export class EditarCartoonComponent implements OnInit {
 
   cartoon;
-  mostrarFormulario= false;
-  cartoonCreado: boolean = false;
+
+  cartoonCreado: boolean;
+  mostrarFormulario:boolean;
+  recargarLista: boolean;
 
   constructor(
     private readonly _cartoonService: CartoonService,
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _personajeService: PersonajeService,
     private readonly _router: Router
-  ) { }
+  ) { 
+    this.cartoonCreado = false;
+    this.mostrarFormulario = false;
+    this.recargarLista = false;
+  }
 
   ngOnInit(): void {
     const obsRuta = this._activatedRoute.params;
@@ -57,13 +63,16 @@ export class EditarCartoonComponent implements OnInit {
   }
 
   crearPersonaje(personaje){    
+    this.recargarLista = true;
     const obsCrear = this._personajeService.crear(personaje);
     obsCrear.subscribe(
       (datos) => {
         // Aqui enviar a recargar
+        setTimeout(() => {this.recargarLista = false}, 1000);
       },
       (error) => {
         console.log("Error: ", error);
+        setTimeout(() => {this.recargarLista = false}, 1000);
       }
     )
   }
